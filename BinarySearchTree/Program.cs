@@ -38,6 +38,29 @@ namespace BinarySearchTree
             {
                 tmp = new node(element, null, null);
                 if(parent == null)
+                {
+                    ROOT = tmp;
+                }
+                else if (string.Compare(element, parent.info) <0)
+                {
+                    if (string.Compare(element, parent.info) < 0)
+                        parent.lchild = tmp;
+                }
+                else
+                {
+                    parent.rchild = tmp;
+                }
+            }
+        }
+        public void find (string element, ref node parent, ref node currentnode)
+        {
+            currentnode = ROOT;
+            parent = null;
+            while ((currentnode != null) && (currentnode.info != element))
+            {
+                parent = currentnode;
+                if (string.Compare(element, currentnode.info) <0)
+                    currentnode
             }
         }
     }
