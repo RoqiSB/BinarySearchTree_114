@@ -23,9 +23,9 @@ namespace BinarySearchTree
 
         public BinaryTree()
         {
-            ROOT = null; //intializing root to null
+            ROOT = null; // initializing root to null
         }
-        public void insert(string element)  //insert a node in the binary search
+        public void insert(string element)// insert a node in the binary search bar//
         {
             node tmp, parent = null, currentnode = null;
             find(element, ref parent, ref currentnode);
@@ -34,14 +34,14 @@ namespace BinarySearchTree
                 Console.WriteLine("Duplicate words not allowed");
                 return;
             }
-            else // if the specified node is not present
+            else //if the speicified node is not present
             {
                 tmp = new node(element, null, null);
-                if(parent == null)
+                if (parent == null)
                 {
                     ROOT = tmp;
                 }
-                else if (string.Compare(element, parent.info) <0)
+                else if (string.Compare(element, parent.info) < 0)
                 {
                     if (string.Compare(element, parent.info) < 0)
                         parent.lchild = tmp;
@@ -52,29 +52,45 @@ namespace BinarySearchTree
                 }
             }
         }
-        public void find (string element, ref node parent, ref node currentnode)
+        public void find(string element, ref node parent, ref node currentnode)
         {
             currentnode = ROOT;
             parent = null;
             while ((currentnode != null) && (currentnode.info != element))
             {
                 parent = currentnode;
-                if (string.Compare(element, currentnode.info) <0)
+                if (string.Compare(element, currentnode.info) < 0)
                     currentnode = currentnode.lchild;
+                else
+                    currentnode = currentnode.rchild;
             }
         }
-        public void inorder (node ptr)
+        public void inorder(node ptr)
         {
             if (ROOT == null)
             {
-                Console.WriteLine("Tree is Empty");
+                Console.WriteLine("Tree is empty");
                 return;
             }
-            if(ptr != null)
+            if (ptr != null)
             {
                 inorder(ptr.lchild);
-                    Console.WriteLine(ptr.info + " ");
+                Console.WriteLine(ptr.info + " ");
                 inorder(ptr.rchild);
+            }
+        }
+        public void preorder(node ptr)
+        {
+            if (ROOT == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return;
+            }
+            if (ptr != null)
+            {
+                Console.WriteLine(ptr.info + " ");
+                preorder(ptr.lchild);
+                preorder(ptr.rchild);
             }
         }
     }
